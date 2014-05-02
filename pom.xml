@@ -4,13 +4,12 @@
 
     <groupId>org.springframework.data</groupId>
     <artifactId>spring-data-elasticsearch</artifactId>
-    <version>1.0.0.BUILD-SNAPSHOT</version>
+    <version>1.0.1.BUILD-CUSTOM</version>
 
     <parent>
         <groupId>org.springframework.data.build</groupId>
         <artifactId>spring-data-parent</artifactId>
         <version>1.4.0.BUILD-SNAPSHOT</version>
-        <relativePath>../spring-data-build/parent/pom.xml</relativePath>
     </parent>
 
     <name>Spring Data Elasticsearch</name>
