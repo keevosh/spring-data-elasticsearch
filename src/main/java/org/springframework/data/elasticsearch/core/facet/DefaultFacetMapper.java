@@ -19,11 +19,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.elasticsearch.search.facet.Facet;
+import org.elasticsearch.search.facet.datehistogram.DateHistogramFacet;
 import org.elasticsearch.search.facet.histogram.HistogramFacet;
 import org.elasticsearch.search.facet.range.RangeFacet;
 import org.elasticsearch.search.facet.statistical.StatisticalFacet;
 import org.elasticsearch.search.facet.terms.TermsFacet;
-import org.springframework.data.elasticsearch.core.facet.result.*;
+import org.springframework.data.elasticsearch.core.facet.result.HistogramResult;
+import org.springframework.data.elasticsearch.core.facet.result.IntervalUnit;
+import org.springframework.data.elasticsearch.core.facet.result.Range;
+import org.springframework.data.elasticsearch.core.facet.result.RangeResult;
+import org.springframework.data.elasticsearch.core.facet.result.StatisticalResult;
+import org.springframework.data.elasticsearch.core.facet.result.Term;
+import org.springframework.data.elasticsearch.core.facet.result.TermResult;
 
 /**
  * @author Artur Konczak
@@ -46,6 +53,10 @@ public class DefaultFacetMapper {
 
 		if (facet instanceof HistogramFacet) {
 			return parseHistogram((HistogramFacet) facet);
+		}
+
+		if (facet instanceof DateHistogramFacet) {
+			return parseDateHistogram((DateHistogramFacet) facet);
 		}
 
 		return null;
@@ -75,6 +86,14 @@ public class DefaultFacetMapper {
 		List<IntervalUnit> entries = new ArrayList<IntervalUnit>();
 		for (HistogramFacet.Entry entry : facet.getEntries()) {
 			entries.add(new IntervalUnit(entry.getKey(), entry.getCount(), entry.getTotalCount(), entry.getTotal(), entry.getMean(), entry.getMin(), entry.getMax()));
+		}
+		return new HistogramResult(facet.getName(), entries);
+	}
+
+	private static FacetResult parseDateHistogram(DateHistogramFacet facet) {
+		List<IntervalUnit> entries = new ArrayList<IntervalUnit>();
+		for (DateHistogramFacet.Entry entry : facet.getEntries()) {
+			entries.add(new IntervalUnit(entry.getTime(), entry.getCount(), entry.getTotalCount(), entry.getTotal(), entry.getMean(), entry.getMin(), entry.getMax()));
 		}
 		return new HistogramResult(facet.getName(), entries);
 	}
