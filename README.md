@@ -10,17 +10,18 @@ The Spring Data Elasticsearch project provides integration with the [elasticsear
 Guide
 ------------
 
-* [Reference Documentation](http://docs.spring.io/spring-data/elasticsearch/docs/1.0.0.M2/reference/html/)
-* [PDF Documentation](http://docs.spring.io/spring-data/elasticsearch/docs/1.0.0.M2/reference/pdf/spring-data-elasticsearch-reference.pdf)
-* [API Documentation](http://docs.spring.io/spring-data/elasticsearch/docs/1.0.0.M2/api/)
+* [Reference Documentation](http://docs.spring.io/spring-data/elasticsearch/docs/current/reference/html/)
+* [PDF Documentation](http://docs.spring.io/spring-data/elasticsearch/docs/current/reference/pdf/spring-data-elasticsearch-reference.pdf)
+* [API Documentation](http://docs.spring.io/spring-data/elasticsearch/docs/current/api/)
 * [Spring Data Project](http://project.spring.io/spring-data)
 * [Sample Test Application](https://github.com/BioMedCentralLtd/spring-data-elasticsearch-sample-application)
-* for more detailed questions, use the [forum](http://forum.springsource.org/forumdisplay.php?f=80).
+* [Spring Data Elasticsearch Google Group](https://groups.google.com/d/forum/spring-data-elasticsearch-devs)
+* For more detailed questions, use the [forum](http://forum.springsource.org/forumdisplay.php?f=80).
 
 
 Quick Start
 -----------
-Wiki page for [Getting Started] (https://github.com/spring-projects/spring-data-elasticsearch/wiki/How-to-start-with-spring-data-elasticsearch)
+Wiki page for [Getting Started](https://github.com/spring-projects/spring-data-elasticsearch/wiki/How-to-start-with-spring-data-elasticsearch)
 
 ### Maven configuration
 
@@ -30,14 +31,8 @@ Add the Maven dependency:
 <dependency>
     <groupId>org.springframework.data</groupId>
     <artifactId>spring-data-elasticsearch</artifactId>
-    <version>1.0.0.M2</version>
+    <version>1.0.0.RELEASE</version>
 </dependency>
-
-<repository>
-  <id>spring-libs-milestone</id>
-  <name>Spring Milestone Repository</name>
-  <url>http://repo.spring.io/libs-milestone</url>
-</repository>
 ```
 
 If you'd rather like the latest snapshots of the upcoming major version, use our Maven snapshot repository and declare
@@ -56,6 +51,11 @@ the appropriate dependency version.
   <url>http://repo.spring.io/libs-snapshot</url>
 </repository>
 ```
+
+###Note:
+Spring data elaticsearch 1.0.0.RELEASE version is on elasticsearch 1.1.1 library which uses java 1.6 or later version.
+As latest version of elasticsearch 1.2.x is now supporting java 1.7, future releases of spring data elasticsearch library can be used with Java 7 or later version.
+In order to use with java 6 it has to be with elasticsearch 1.1.x.
 
 ### ElasticsearchRepository
 A default implementation of ElasticsearchRepository, aligning to the generic Repository Interfaces, is provided. Spring can do the Repository implementation for you depending on method names in the interface definition.
@@ -192,8 +192,8 @@ Using Node Client
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:elasticsearch="http://www.springframework.org/schema/data/elasticsearch"
-       xsi:schemaLocation="http://www.springframework.org/schema/data/elasticsearch http://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch-1.0.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/data/elasticsearch http://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <elasticsearch:node-client id="client" local="true"/>
 
@@ -211,8 +211,8 @@ Using Transport Client
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:elasticsearch="http://www.springframework.org/schema/data/elasticsearch"
-       xsi:schemaLocation="http://www.springframework.org/schema/data/elasticsearch http://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch-1.0.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/data/elasticsearch http://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <elasticsearch:repositories base-package="com.xyz.acme"/>
 
@@ -245,7 +245,3 @@ Before we accept a non-trivial patch or pull request we will need you to sign th
 Code formatting for [Eclipse and Intellij](https://github.com/spring-projects/spring-data-build/tree/master/etc/ide)
 
 [More information about contributing to Spring Data](https://github.com/spring-projects/spring-data-build/blob/master/CONTRIBUTING.md)
-
-### Contact Details
-
-* [Spring Data Elasticsearch Support] (https://groups.google.com/d/forum/spring-data-elasticsearch-devs)
